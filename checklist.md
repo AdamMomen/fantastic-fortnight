@@ -238,15 +238,15 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm install`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
-- [ ] Resize viewport; hover states; empty inbox still feels intentional
+- [x] Resize viewport; hover states; empty inbox still feels intentional
 
 ---
 
@@ -256,38 +256,38 @@ Expand coverage beyond per-phase unit tests: integration-style and interaction t
 
 ### Unit & logic tests (consolidate / extend)
 
-- [ ] Test risk level mapping
-- [ ] Test recommendation mapping
-- [ ] Test fallback for unknown risk
-- [ ] Test diff formatting logic
+- [x] Test risk level mapping
+- [x] Test recommendation mapping
+- [x] Test fallback for unknown risk
+- [x] Test diff formatting logic
 
 ---
 
 ### Component tests
 
-- [ ] ApprovalTable renders rows
-- [ ] RiskBadge renders correct label + style
-- [ ] DetailDrawer renders selected approval
-- [ ] RecommendationCard shows correct message
-- [ ] BeforeAfterDiff renders both states
+- [x] ApprovalTable renders rows
+- [x] RiskBadge renders correct label + style
+- [x] DetailDrawer renders selected approval
+- [x] RecommendationCard shows correct message
+- [x] BeforeAfterDiff renders both states
 
 ---
 
 ### Interaction tests
 
-- [ ] Click row → opens drawer
-- [ ] Close drawer → hides details
-- [ ] Approve button triggers handler
-- [ ] Reject button triggers handler
+- [x] Click row → opens drawer
+- [x] Close drawer → hides details
+- [x] Approve button triggers handler
+- [x] Reject button triggers handler
 
 ---
 
 ### Edge cases
 
-- [ ] Missing explanation handled
-- [ ] Missing before/after handled
-- [ ] Empty list handled
-- [ ] Unknown risk handled gracefully
+- [x] Missing explanation handled
+- [x] Missing before/after handled
+- [x] Empty list handled
+- [x] Unknown risk handled gracefully
 
 ### Phase gate — engineering
 
