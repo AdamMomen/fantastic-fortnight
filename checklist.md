@@ -5,11 +5,11 @@
 ## Phase 0 — Setup
 
 - [x] Initialize Next.js app (TypeScript)
-- [ ] Install dependencies:
+- [x] Install dependencies:
   - [x] tailwindcss
-  - [ ] shadcn/ui
-  - [ ] lucide-react
-  - [ ] react-hook-form
+  - [x] shadcn/ui
+  - [x] lucide-react
+  - [x] react-hook-form
   - [x] zod
 - [x] Setup Tailwind config
 - [x] Setup base layout (App shell)
