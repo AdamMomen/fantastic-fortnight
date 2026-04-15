@@ -12,7 +12,10 @@ export function logApprovalAction(
   console.log(`[${action}]`, approval.id, approval.title)
 }
 
-export function useApprovalInboxState() {
+export function useApprovalInboxState(initialApprovals: Approval[]) {
+  const [pendingApprovals, setPendingApprovals] = useState<Approval[]>(() => [
+    ...initialApprovals,
+  ])
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedApproval, setSelectedApproval] = useState<Approval | null>(
     null
@@ -33,15 +36,20 @@ export function useApprovalInboxState() {
     if (!open) setSelectedApproval(null)
   }, [])
 
+  const removePending = useCallback((approval: Approval) => {
+    setPendingApprovals((prev) => prev.filter((p) => p.id !== approval.id))
+  }, [])
+
   const handleApprove = useCallback(
     (approval: Approval) => {
       logApprovalAction("approve", approval)
       toast.success("Approved", {
         description: approval.title,
       })
+      removePending(approval)
       closeDrawer()
     },
-    [closeDrawer]
+    [closeDrawer, removePending]
   )
 
   const handleReject = useCallback(
@@ -50,12 +58,14 @@ export function useApprovalInboxState() {
       toast.message("Rejected", {
         description: approval.title,
       })
+      removePending(approval)
       closeDrawer()
     },
-    [closeDrawer]
+    [closeDrawer, removePending]
   )
 
   return {
+    pendingApprovals,
     selectedApproval,
     drawerOpen,
     openDrawer,

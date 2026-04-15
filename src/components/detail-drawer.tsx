@@ -1,5 +1,7 @@
 "use client"
 
+import { useMemo } from "react"
+
 import {
   Check,
   CircleAlert,
@@ -21,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { BeforeAfterDiff } from "@/components/before-after-diff"
 import { RecommendationCard } from "@/components/recommendation-card"
 import { RiskBadge } from "@/components/risk-badge"
+import { normalizeApprovalForDisplay } from "@/lib/approval-normalizers"
 import { formatApprovalInboxTimestamp } from "@/lib/format-approval-timestamp"
 import type { Approval } from "@/lib/mock-data"
 
@@ -47,6 +50,11 @@ export function DetailDrawer({
   onApprove = defaultApprove,
   onReject = defaultReject,
 }: DetailDrawerProps) {
+  const display = useMemo(
+    () => (approval ? normalizeApprovalForDisplay(approval) : null),
+    [approval]
+  )
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -54,7 +62,7 @@ export function DetailDrawer({
         showCloseButton
         className="flex h-full max-h-[100dvh] w-full flex-col gap-0 p-0 sm:max-w-lg"
       >
-        {approval ? (
+        {approval && display ? (
           <>
             <SheetHeader className="space-y-2 border-b border-border p-4 text-left">
               <SheetTitle className="pr-10 text-left text-base leading-snug">
@@ -76,7 +84,7 @@ export function DetailDrawer({
                   What will happen
                 </h3>
                 <p className="text-sm leading-relaxed text-foreground">
-                  {approval.explanation}
+                  {display.explanation}
                 </p>
               </section>
 
@@ -86,7 +94,7 @@ export function DetailDrawer({
                   Risk
                 </h3>
                 <div className="flex flex-wrap items-center gap-2">
-                  <RiskBadge level={approval.riskLevel} />
+                  <RiskBadge level={display.riskLevel} />
                 </div>
               </section>
 
@@ -105,8 +113,8 @@ export function DetailDrawer({
               ) : null}
 
               <BeforeAfterDiff
-                before={approval.impact.before}
-                after={approval.impact.after}
+                before={display.impact.before}
+                after={display.impact.after}
               />
 
               <section className="space-y-2.5">
@@ -115,9 +123,9 @@ export function DetailDrawer({
                   Recommendation
                 </h3>
                 <RecommendationCard
-                  label={approval.recommendation.label}
-                  message={approval.recommendation.message}
-                  confidence={approval.recommendation.confidence}
+                  label={display.recommendation.label}
+                  message={display.recommendation.message}
+                  confidence={display.recommendation.confidence}
                 />
               </section>
             </div>

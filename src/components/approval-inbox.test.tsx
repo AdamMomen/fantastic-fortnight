@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react"
+import { render, screen, waitFor, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 
@@ -52,5 +52,24 @@ describe("ApprovalInbox", () => {
 
     const dialog = await screen.findByRole("dialog")
     expect(within(dialog).getByText(MOCK_APPROVALS[0].title)).toBeInTheDocument()
+  })
+
+  it("removes an approval from the table after Approve", async () => {
+    const user = userEvent.setup()
+    render(<ApprovalInbox approvals={MOCK_APPROVALS} />)
+
+    const target = MOCK_APPROVALS[0]
+    const table = screen.getByRole("table")
+    expect(within(table).getByText(target.title)).toBeInTheDocument()
+
+    const [, firstBodyRow] = within(table).getAllByRole("row")
+    await user.click(firstBodyRow)
+
+    const dialog = await screen.findByRole("dialog")
+    await user.click(within(dialog).getByRole("button", { name: /^approve$/i }))
+
+    await waitFor(() => {
+      expect(within(table).queryByText(target.title)).not.toBeInTheDocument()
+    })
   })
 })

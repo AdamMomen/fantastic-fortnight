@@ -47,6 +47,14 @@ describe("DetailDrawer", () => {
     expect(screen.queryByText("Data used")).not.toBeInTheDocument()
   })
 
+  it("shows fallback explanation when the source string is blank", () => {
+    const sparse = { ...sample, explanation: "   " }
+    render(<DetailDrawer approval={sparse} open onOpenChange={vi.fn()} />)
+    expect(
+      screen.getByText(/No additional explanation was provided/i)
+    ).toBeInTheDocument()
+  })
+
   it("calls onApprove when Approve is clicked", async () => {
     const user = userEvent.setup()
     const onApprove = vi.fn()

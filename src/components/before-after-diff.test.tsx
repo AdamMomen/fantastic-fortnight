@@ -22,4 +22,13 @@ describe("BeforeAfterDiff", () => {
     expect(within(beforeRegion!).getByText("Draft")).toBeInTheDocument()
     expect(within(afterRegion!).getByText("Sent")).toBeInTheDocument()
   })
+
+  it("aligns keys across columns with em dashes for missing values", () => {
+    render(
+      <BeforeAfterDiff before={{ Only: "here" }} after={{ Other: "there" }} />
+    )
+    expect(screen.getAllByText("—").length).toBeGreaterThanOrEqual(2)
+    expect(screen.getByText("here")).toBeInTheDocument()
+    expect(screen.getByText("there")).toBeInTheDocument()
+  })
 })

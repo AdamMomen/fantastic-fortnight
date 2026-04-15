@@ -1,5 +1,7 @@
 import { Columns2 } from "lucide-react"
 
+import { buildDiffRows } from "@/lib/diff-utils"
+
 type BeforeAfterDiffProps = {
   before: Record<string, string>
   after: Record<string, string>
@@ -37,6 +39,29 @@ function DiffColumn({
 }
 
 export function BeforeAfterDiff({ before, after }: BeforeAfterDiffProps) {
+  const rows = buildDiffRows(before, after)
+
+  if (rows.length === 0) {
+    return (
+      <div>
+        <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <Columns2 className="size-3.5 shrink-0 opacity-80" aria-hidden />
+          Before / after
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground">
+          No before/after details.
+        </p>
+      </div>
+    )
+  }
+
+  const beforeAligned: Record<string, string> = Object.fromEntries(
+    rows.map((r) => [r.key, r.before])
+  )
+  const afterAligned: Record<string, string> = Object.fromEntries(
+    rows.map((r) => [r.key, r.after])
+  )
+
   return (
     <div>
       <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -44,8 +69,8 @@ export function BeforeAfterDiff({ before, after }: BeforeAfterDiffProps) {
         Before / after
       </h3>
       <div className="mt-2 grid gap-3 sm:grid-cols-2">
-        <DiffColumn title="Before" entries={before} />
-        <DiffColumn title="After" entries={after} />
+        <DiffColumn title="Before" entries={beforeAligned} />
+        <DiffColumn title="After" entries={afterAligned} />
       </div>
     </div>
   )

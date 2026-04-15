@@ -37,7 +37,9 @@ describe("useApprovalInboxState", () => {
   })
 
   it("selects an approval and opens the drawer", () => {
-    const { result } = renderHook(() => useApprovalInboxState())
+    const { result } = renderHook(() =>
+      useApprovalInboxState(MOCK_APPROVALS)
+    )
     const a = MOCK_APPROVALS[1]
 
     act(() => result.current.openDrawer(a))
@@ -46,7 +48,9 @@ describe("useApprovalInboxState", () => {
   })
 
   it("clears selection when the drawer closes via onDrawerOpenChange", () => {
-    const { result } = renderHook(() => useApprovalInboxState())
+    const { result } = renderHook(() =>
+      useApprovalInboxState(MOCK_APPROVALS)
+    )
     const a = MOCK_APPROVALS[0]
 
     act(() => result.current.openDrawer(a))
@@ -56,9 +60,11 @@ describe("useApprovalInboxState", () => {
     expect(result.current.selectedApproval).toBe(null)
   })
 
-  it("approve logs, shows toast, and closes", () => {
+  it("approve removes the item from pending list, logs, shows toast, and closes", () => {
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {})
-    const { result } = renderHook(() => useApprovalInboxState())
+    const { result } = renderHook(() =>
+      useApprovalInboxState(MOCK_APPROVALS)
+    )
     const a = MOCK_APPROVALS[2]
 
     act(() => result.current.openDrawer(a))
@@ -70,13 +76,21 @@ describe("useApprovalInboxState", () => {
     })
     expect(result.current.drawerOpen).toBe(false)
     expect(result.current.selectedApproval).toBe(null)
+    expect(result.current.pendingApprovals.some((p) => p.id === a.id)).toBe(
+      false
+    )
+    expect(result.current.pendingApprovals).toHaveLength(
+      MOCK_APPROVALS.length - 1
+    )
 
     logSpy.mockRestore()
   })
 
-  it("reject logs, shows toast, and closes", () => {
+  it("reject removes the item from pending list", () => {
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {})
-    const { result } = renderHook(() => useApprovalInboxState())
+    const { result } = renderHook(() =>
+      useApprovalInboxState(MOCK_APPROVALS)
+    )
     const a = MOCK_APPROVALS[3]
 
     act(() => result.current.openDrawer(a))
@@ -87,6 +101,9 @@ describe("useApprovalInboxState", () => {
       description: a.title,
     })
     expect(result.current.drawerOpen).toBe(false)
+    expect(result.current.pendingApprovals.some((p) => p.id === a.id)).toBe(
+      false
+    )
 
     logSpy.mockRestore()
   })

@@ -13,30 +13,31 @@ type ApprovalInboxProps = {
 
 export function ApprovalInbox({ approvals }: ApprovalInboxProps) {
   const {
+    pendingApprovals,
     selectedApproval,
     drawerOpen,
     openDrawer,
     onDrawerOpenChange,
     handleApprove,
     handleReject,
-  } = useApprovalInboxState()
+  } = useApprovalInboxState(approvals)
 
   return (
     <>
-      {approvals.length === 0 ? (
+      {pendingApprovals.length === 0 ? (
         <EmptyApprovalsState />
       ) : (
         <>
           <div className="hidden sm:block">
             <ApprovalTable
-              approvals={approvals}
+              approvals={pendingApprovals}
               selectedId={selectedApproval?.id ?? null}
               onRowActivate={openDrawer}
             />
           </div>
           <div className="sm:hidden">
             <ApprovalMobileCardList
-              approvals={approvals}
+              approvals={pendingApprovals}
               selectedId={selectedApproval?.id ?? null}
               onActivate={openDrawer}
             />
