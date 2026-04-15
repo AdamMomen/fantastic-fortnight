@@ -38,13 +38,13 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Test tooling (required before Phase 1 — unit tests every phase)
 
-- [ ] Install and wire:
-  - [ ] Vitest
-  - [ ] React Testing Library
-  - [ ] @testing-library/user-event
-  - [ ] jsdom
-- [ ] Add `pnpm test` script (and optional `pnpm test:watch` if useful)
-- [ ] Add at least one committed unit test (e.g. utility or trivial component) so CI can run `pnpm test`
+- [x] Install and wire:
+  - [x] Vitest
+  - [x] React Testing Library
+  - [x] @testing-library/user-event
+  - [x] jsdom
+- [x] Add `pnpm test` script (and optional `pnpm test:watch` if useful)
+- [x] Add at least one committed unit test (e.g. utility or trivial component) so CI can run `pnpm test`
 
 ### Phase gate — engineering
 
@@ -62,24 +62,24 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ## Phase 1 — Data Modeling (Mock First)
 
-- [ ] Create mock approval dataset
-  - [ ] id
-  - [ ] title
-  - [ ] action_type
-  - [ ] tool (email, calendar, finance, etc.)
-  - [ ] risk_level (low, medium, high)
-  - [ ] summary
-  - [ ] explanation
-  - [ ] impact.before
-  - [ ] impact.after
-  - [ ] recommendation
-  - [ ] timestamp
+- [x] Create mock approval dataset
+  - [x] id
+  - [x] title
+  - [x] action_type
+  - [x] tool (email, calendar, finance, etc.)
+  - [x] risk_level (low, medium, high)
+  - [x] summary
+  - [x] explanation
+  - [x] impact.before
+  - [x] impact.after
+  - [x] recommendation
+  - [x] timestamp
 
-- [ ] Store in `/lib/mock-data.ts`
+- [x] Store in `/lib/mock-data.ts` (`src/lib/mock-data.ts`)
 
 ### Unit tests (this phase)
 
-- [ ] Unit tests for mock data shape / invariants (e.g. every record has required fields, valid `risk_level`, valid `tool`)
+- [x] Unit tests for mock data shape / invariants (e.g. every record has required fields, valid `risk_level`, valid `tool`)
 
 ### Phase gate — engineering
 
