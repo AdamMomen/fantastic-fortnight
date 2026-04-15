@@ -48,11 +48,11 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm install`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
@@ -83,36 +83,36 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm install`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
-- [ ] N/A (data-only) unless exposed in UI; then spot-check consumers still render
+- [x] N/A (data-only) unless exposed in UI; then spot-check consumers still render
 
 ---
 
 ## Phase 2 — Approval Inbox (List View)
 
-- [ ] Build `ApprovalTable` component
-- [ ] Build `ApprovalRow` component
+- [x] Build `ApprovalTable` component
+- [x] Build `ApprovalRow` component
 
-- [ ] Display:
-  - [ ] title
-  - [ ] risk badge
-  - [ ] timestamp
-  - [ ] action button (“View”)
+- [x] Display:
+  - [x] title
+  - [x] risk badge
+  - [x] timestamp
+  - [x] action button (“View”)
 
-- [ ] Implement:
-  - [ ] risk color mapping
-  - [ ] click row → open detail drawer
+- [x] Implement:
+  - [x] risk color mapping
+  - [x] click row → open detail drawer
 
 ### Unit tests (this phase)
 
-- [ ] Tests for list rendering (rows, columns) and risk styling helpers used by the table
+- [x] Tests for list rendering (rows, columns) and risk styling helpers used by the table
 
 ### Phase gate — engineering
 
