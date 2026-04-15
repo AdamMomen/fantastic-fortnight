@@ -1,9 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { RiskBadge } from "@/components/risk-badge"
 import type { Approval } from "@/lib/mock-data"
 import { formatApprovalInboxTimestamp } from "@/lib/format-approval-timestamp"
-import { riskBadgeClassName, riskLevelLabel } from "@/lib/risk-utils"
 import { cn } from "@/lib/utils"
 
 type ApprovalRowProps = {
@@ -31,14 +31,7 @@ export function ApprovalRow({
         </span>
       </td>
       <td className="whitespace-nowrap px-3 py-3 align-middle">
-        <span
-          className={cn(
-            "inline-flex rounded-md px-2 py-0.5 text-xs font-medium",
-            riskBadgeClassName(approval.riskLevel)
-          )}
-        >
-          {riskLevelLabel(approval.riskLevel)}
-        </span>
+        <RiskBadge level={approval.riskLevel} />
       </td>
       <td className="whitespace-nowrap px-3 py-3 align-middle text-muted-foreground tabular-nums">
         {formatApprovalInboxTimestamp(approval.timestamp)}

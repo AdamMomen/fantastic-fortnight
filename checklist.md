@@ -116,11 +116,11 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm install`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
@@ -130,20 +130,20 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ## Phase 3 — Detail Drawer (Core UX)
 
-- [ ] Create Drawer (shadcn Sheet)
+- [x] Create Drawer (shadcn Sheet)
 
-- [ ] Sections:
-  - [ ] Title + close button
-  - [ ] “What will happen” (explanation)
-  - [ ] Risk section
-  - [ ] Data used (optional)
-  - [ ] Before / After diff
-  - [ ] Recommendation box
-  - [ ] Approve / Reject buttons
+- [x] Sections:
+  - [x] Title + close button
+  - [x] “What will happen” (explanation)
+  - [x] Risk section
+  - [x] Data used (optional)
+  - [x] Before / After diff
+  - [x] Recommendation box
+  - [x] Approve / Reject buttons
 
 ### Unit tests (this phase)
 
-- [ ] Tests for drawer content given a sample approval (sections render; close control present)
+- [x] Tests for drawer content given a sample approval (sections render; close control present)
 
 ### Phase gate — engineering
 
@@ -161,36 +161,36 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ## Phase 4 — Core Components
 
-- [ ] Build `RiskBadge`
-  - [ ] low → green
-  - [ ] medium → yellow
-  - [ ] high → red
+- [x] Build `RiskBadge`
+  - [x] low → green
+  - [x] medium → yellow
+  - [x] high → red
 
-- [ ] Build `RecommendationCard`
-  - [ ] message
-  - [ ] optional confidence
+- [x] Build `RecommendationCard`
+  - [x] message
+  - [x] optional confidence
 
-- [ ] Build `BeforeAfterDiff`
-  - [ ] side-by-side comparison
-  - [ ] key-value rendering
+- [x] Build `BeforeAfterDiff`
+  - [x] side-by-side comparison
+  - [x] key-value rendering
 
 ### Unit tests (this phase)
 
-- [ ] `RiskBadge` label + class/variant per level
-- [ ] `RecommendationCard` message (and confidence when set)
-- [ ] `BeforeAfterDiff` renders before/after keys
+- [x] `RiskBadge` label + class/variant per level
+- [x] `RecommendationCard` message (and confidence when set)
+- [x] `BeforeAfterDiff` renders before/after keys
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm install`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
-- [ ] Risk colors read at a glance; diff is scannable; recommendation reads as a single clear callout
+- [x] Risk colors read at a glance; diff is scannable; recommendation reads as a single clear callout
 
 ---
 

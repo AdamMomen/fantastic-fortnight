@@ -1,0 +1,49 @@
+type BeforeAfterDiffProps = {
+  before: Record<string, string>
+  after: Record<string, string>
+}
+
+function DiffColumn({
+  title,
+  entries,
+}: {
+  title: string
+  entries: Record<string, string>
+}) {
+  const keys = Object.keys(entries)
+  return (
+    <div className="rounded-lg border border-border bg-card p-3">
+      <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        {title}
+      </h4>
+      <dl className="mt-3 space-y-2">
+        {keys.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No data</p>
+        ) : (
+          keys.map((key) => (
+            <div key={key}>
+              <dt className="text-xs text-muted-foreground">{key}</dt>
+              <dd className="text-sm font-medium text-foreground">
+                {entries[key]}
+              </dd>
+            </div>
+          ))
+        )}
+      </dl>
+    </div>
+  )
+}
+
+export function BeforeAfterDiff({ before, after }: BeforeAfterDiffProps) {
+  return (
+    <div>
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        Before / after
+      </h3>
+      <div className="mt-2 grid gap-3 sm:grid-cols-2">
+        <DiffColumn title="Before" entries={before} />
+        <DiffColumn title="After" entries={after} />
+      </div>
+    </div>
+  )
+}

@@ -3,13 +3,7 @@
 import { useState } from "react"
 
 import { ApprovalTable } from "@/components/approval-table"
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet"
+import { DetailDrawer } from "@/components/detail-drawer"
 import type { Approval } from "@/lib/mock-data"
 
 type ApprovalInboxProps = {
@@ -33,32 +27,14 @@ export function ApprovalInbox({ approvals }: ApprovalInboxProps) {
         onRowActivate={activate}
       />
 
-      <Sheet
+      <DetailDrawer
+        approval={selected}
         open={open}
         onOpenChange={(next) => {
           setOpen(next)
           if (!next) setSelected(null)
         }}
-      >
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          {selected ? (
-            <>
-              <SheetHeader className="border-b border-border text-left">
-                <SheetTitle className="pr-8 text-left leading-snug">
-                  {selected.title}
-                </SheetTitle>
-                <SheetDescription className="text-left">
-                  {selected.summary}
-                </SheetDescription>
-              </SheetHeader>
-              <p className="px-4 pt-2 text-xs text-muted-foreground">
-                Full detail layout (explanation, risk, diff, actions) ships in
-                Phase 3.
-              </p>
-            </>
-          ) : null}
-        </SheetContent>
-      </Sheet>
+      />
     </>
   )
 }

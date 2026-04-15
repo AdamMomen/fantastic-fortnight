@@ -9,8 +9,8 @@ export default function Home() {
           Pending approvals
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Select a row or &quot;View&quot; to open a preview. Full detail drawer
-          comes in Phase 3.
+          Select a row or &quot;View&quot; to inspect impact, risk, and
+          recommendation—then approve or reject.
         </p>
       </div>
       <ApprovalInbox approvals={MOCK_APPROVALS} />
