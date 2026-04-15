@@ -2,6 +2,28 @@
 
 ---
 
+## Workflow — phase management
+
+Use this at the **end of every phase** (and before opening a PR) so the tree stays green.
+
+This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes, swap `pnpm` for the project’s package manager.
+
+
+### Engineering gate (run every phase)
+
+- [ ] **Dependencies:** `pnpm install` (lockfile committed; no drift)
+- [ ] **TypeScript:** `pnpm exec tsc --noEmit`
+- [ ] **Lint:** `pnpm lint`
+- [ ] **Production build:** `pnpm build`
+- [ ] **Unit tests:** `pnpm test` — all tests pass; **add or extend unit tests** for code introduced or changed in this phase
+
+### User verification gate (run when the phase ships UI or behavior)
+
+- [ ] Manually exercise what this phase added (happy path)
+- [ ] Note any confusing copy, layout, or trust issues for Phase 8 / backlog
+
+---
+
 ## Phase 0 — Setup
 
 - [x] Initialize Next.js app (TypeScript)
@@ -13,6 +35,28 @@
   - [x] zod
 - [x] Setup Tailwind config
 - [x] Setup base layout (App shell)
+
+### Test tooling (required before Phase 1 — unit tests every phase)
+
+- [ ] Install and wire:
+  - [ ] Vitest
+  - [ ] React Testing Library
+  - [ ] @testing-library/user-event
+  - [ ] jsdom
+- [ ] Add `pnpm test` script (and optional `pnpm test:watch` if useful)
+- [ ] Add at least one committed unit test (e.g. utility or trivial component) so CI can run `pnpm test`
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Open the app locally; confirm header/shell and placeholder inbox look correct
 
 ---
 
@@ -33,6 +77,22 @@
 
 - [ ] Store in `/lib/mock-data.ts`
 
+### Unit tests (this phase)
+
+- [ ] Unit tests for mock data shape / invariants (e.g. every record has required fields, valid `risk_level`, valid `tool`)
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] N/A (data-only) unless exposed in UI; then spot-check consumers still render
+
 ---
 
 ## Phase 2 — Approval Inbox (List View)
@@ -50,6 +110,22 @@
   - [ ] risk color mapping
   - [ ] click row → open detail drawer
 
+### Unit tests (this phase)
+
+- [ ] Tests for list rendering (rows, columns) and risk styling helpers used by the table
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Scan the inbox: titles, risk, and time read clearly; “View” is obvious
+
 ---
 
 ## Phase 3 — Detail Drawer (Core UX)
@@ -64,6 +140,22 @@
   - [ ] Before / After diff
   - [ ] Recommendation box
   - [ ] Approve / Reject buttons
+
+### Unit tests (this phase)
+
+- [ ] Tests for drawer content given a sample approval (sections render; close control present)
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Open an approval: can answer “what will happen?” without hunting; close and reopen feels natural
 
 ---
 
@@ -82,6 +174,24 @@
   - [ ] side-by-side comparison
   - [ ] key-value rendering
 
+### Unit tests (this phase)
+
+- [ ] `RiskBadge` label + class/variant per level
+- [ ] `RecommendationCard` message (and confidence when set)
+- [ ] `BeforeAfterDiff` renders before/after keys
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Risk colors read at a glance; diff is scannable; recommendation reads as a single clear callout
+
 ---
 
 ## Phase 5 — Interaction & State
@@ -97,6 +207,22 @@
 - [ ] Add feedback:
   - [ ] optional toast or status message
 
+### Unit tests (this phase)
+
+- [ ] Tests for state transitions (select, open, close) and action handlers (mocked)
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Full loop: pick row → drawer → approve/reject feedback behaves as expected
+
 ---
 
 ## Phase 6 — UI Polish
@@ -107,21 +233,29 @@
 - [ ] Add empty state
 - [ ] Ensure mobile responsiveness (basic)
 
+### Unit tests (this phase)
+
+- [ ] Tests for empty state and any new formatting helpers; snapshot or RTL only where stable
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Resize viewport; hover states; empty inbox still feels intentional
+
 ---
 
-## Phase 7 — Automated Testing
+## Phase 7 — Automated Testing (breadth & hardening)
 
-### Setup
+Expand coverage beyond per-phase unit tests: integration-style and interaction tests.
 
-- [ ] Install:
-  - [ ] Vitest (or Jest)
-  - [ ] React Testing Library
-  - [ ] @testing-library/user-event
-  - [ ] jsdom
-
----
-
-### Unit Tests (Logic)
+### Unit & logic tests (consolidate / extend)
 
 - [ ] Test risk level mapping
 - [ ] Test recommendation mapping
@@ -130,7 +264,7 @@
 
 ---
 
-### Component Tests
+### Component tests
 
 - [ ] ApprovalTable renders rows
 - [ ] RiskBadge renders correct label + style
@@ -140,7 +274,7 @@
 
 ---
 
-### Interaction Tests
+### Interaction tests
 
 - [ ] Click row → opens drawer
 - [ ] Close drawer → hides details
@@ -149,16 +283,30 @@
 
 ---
 
-### Edge Cases
+### Edge cases
 
 - [ ] Missing explanation handled
 - [ ] Missing before/after handled
 - [ ] Empty list handled
 - [ ] Unknown risk handled gracefully
 
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Run through regression script: list, drawer, edge-case records if available in mock data
+
 ---
 
 ## Phase 8 — Manual Verification (User Validation)
+
+Structured user validation (deeper than per-phase spot checks).
 
 ### Core Flow
 
@@ -208,6 +356,14 @@ Ask yourself (or another person):
 - [ ] Layout issues
 - [ ] Trust gaps
 
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
 ---
 
 ## Phase 9 — QA Pass
@@ -218,6 +374,18 @@ Ask yourself (or another person):
 - [ ] Fix clarity issues
 - [ ] Re-test after fixes
 
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Repeat Phase 8 scenarios after fixes; sign off or file follow-ups
+
 ---
 
 ## Phase 10 — Stretch (Optional)
@@ -227,6 +395,22 @@ Ask yourself (or another person):
 - [ ] Add grouping
 - [ ] Add confidence score UI
 - [ ] Add mock “approval history”
+
+### Unit tests (this phase)
+
+- [ ] Tests for any new filters, search, or grouping logic (pure functions first)
+
+### Phase gate — engineering
+
+- [ ] `pnpm install`
+- [ ] `pnpm exec tsc --noEmit`
+- [ ] `pnpm lint`
+- [ ] `pnpm build`
+- [ ] `pnpm test`
+
+### Phase gate — user verification
+
+- [ ] Exercise new filters/search on real mock data
 
 ---
 
@@ -239,7 +423,8 @@ Ask yourself (or another person):
   - [ ] Identify risk
   - [ ] Make decision confidently
 
-- [ ] All tests pass
+- [ ] All tests pass (`pnpm test`)
+- [ ] Typecheck, lint, and build pass (`pnpm exec tsc --noEmit`, `pnpm lint`, `pnpm build`)
 - [ ] No critical UI bugs
 - [ ] Manual verification passed
 
