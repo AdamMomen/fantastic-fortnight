@@ -1,5 +1,7 @@
 "use client"
 
+import { Clock, FileText, Shield, Eye } from "lucide-react"
+
 import { ApprovalRow } from "@/components/approval-row"
 import type { Approval } from "@/lib/mock-data"
 
@@ -15,25 +17,37 @@ export function ApprovalTable({
   onRowActivate,
 }: ApprovalTableProps) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border bg-card shadow-sm">
+    <div className="overflow-x-auto rounded-xl border border-border bg-card shadow-sm ring-1 ring-black/[0.04] dark:ring-white/10">
       <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
         <thead>
-          <tr className="border-b border-border bg-muted/40 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            <th scope="col" className="px-3 py-2.5 font-medium">
-              Title
+          <tr className="border-b border-border bg-muted/50 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            <th scope="col" className="px-4 py-3 font-medium">
+              <span className="inline-flex items-center gap-1.5">
+                <FileText className="size-3.5 opacity-70" aria-hidden />
+                Title
+              </span>
             </th>
-            <th scope="col" className="px-3 py-2.5 font-medium">
-              Risk
+            <th scope="col" className="px-4 py-3 font-medium">
+              <span className="inline-flex items-center gap-1.5">
+                <Shield className="size-3.5 opacity-70" aria-hidden />
+                Risk
+              </span>
             </th>
-            <th scope="col" className="px-3 py-2.5 font-medium">
-              Time
+            <th scope="col" className="px-4 py-3 font-medium">
+              <span className="inline-flex items-center gap-1.5">
+                <Clock className="size-3.5 opacity-70" aria-hidden />
+                Time
+              </span>
             </th>
-            <th scope="col" className="px-3 py-2.5 font-medium">
-              <span className="sr-only">Actions</span>
+            <th scope="col" className="px-4 py-3 font-medium">
+              <span className="inline-flex items-center gap-1.5">
+                <Eye className="size-3.5 opacity-70" aria-hidden />
+                View
+              </span>
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="[&_tr:last-child]:border-0">
           {approvals.map((approval) => (
             <ApprovalRow
               key={approval.id}

@@ -9,13 +9,24 @@ describe("ApprovalInbox", () => {
   it("renders one row per approval with title and risk label", () => {
     render(<ApprovalInbox approvals={MOCK_APPROVALS} />)
 
+    const table = screen.getByRole("table")
     for (const a of MOCK_APPROVALS) {
-      expect(screen.getByText(a.title)).toBeInTheDocument()
+      expect(within(table).getByText(a.title)).toBeInTheDocument()
     }
 
-    expect(screen.getAllByText("Low").length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText("Medium").length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText("High").length).toBeGreaterThanOrEqual(1)
+    expect(within(table).getAllByText("Low").length).toBeGreaterThanOrEqual(1)
+    expect(within(table).getAllByText("Medium").length).toBeGreaterThanOrEqual(
+      1
+    )
+    expect(within(table).getAllByText("High").length).toBeGreaterThanOrEqual(1)
+  })
+
+  it("shows empty state when there are no approvals", () => {
+    render(<ApprovalInbox approvals={[]} />)
+    expect(
+      screen.getByRole("heading", { name: /all caught up/i })
+    ).toBeInTheDocument()
+    expect(screen.queryByRole("table")).not.toBeInTheDocument()
   })
 
   it("opens the sheet when a row is clicked", async () => {

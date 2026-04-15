@@ -1,6 +1,15 @@
 "use client"
 
 import {
+  Check,
+  CircleAlert,
+  Lightbulb,
+  ListTree,
+  Sparkles,
+  X,
+} from "lucide-react"
+
+import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -60,9 +69,10 @@ export function DetailDrawer({
               </p>
             </SheetHeader>
 
-            <div className="min-h-0 flex-1 space-y-6 overflow-y-auto px-4 py-4">
-              <section className="space-y-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            <div className="min-h-0 flex-1 space-y-7 overflow-y-auto px-4 py-5">
+              <section className="space-y-2.5">
+                <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <Sparkles className="size-3.5 shrink-0 opacity-80" aria-hidden />
                   What will happen
                 </h3>
                 <p className="text-sm leading-relaxed text-foreground">
@@ -70,8 +80,9 @@ export function DetailDrawer({
                 </p>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <section className="space-y-2.5">
+                <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <CircleAlert className="size-3.5 shrink-0 opacity-80" aria-hidden />
                   Risk
                 </h3>
                 <div className="flex flex-wrap items-center gap-2">
@@ -80,8 +91,9 @@ export function DetailDrawer({
               </section>
 
               {approval.dataUsed && approval.dataUsed.length > 0 ? (
-                <section className="space-y-2">
-                  <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <section className="space-y-2.5">
+                  <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    <ListTree className="size-3.5 shrink-0 opacity-80" aria-hidden />
                     Data used
                   </h3>
                   <ul className="list-inside list-disc text-sm text-foreground">
@@ -97,8 +109,9 @@ export function DetailDrawer({
                 after={approval.impact.after}
               />
 
-              <section className="space-y-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <section className="space-y-2.5">
+                <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <Lightbulb className="size-3.5 shrink-0 opacity-80" aria-hidden />
                   Recommendation
                 </h3>
                 <RecommendationCard
@@ -109,21 +122,23 @@ export function DetailDrawer({
               </section>
             </div>
 
-            <SheetFooter className="flex-row gap-2 border-t border-border p-4 sm:justify-end">
+            <SheetFooter className="flex-row gap-2 border-t border-border bg-muted/20 p-4 sm:justify-end">
               <Button
                 type="button"
                 variant="outline"
-                className="flex-1 sm:flex-none"
+                className="flex-1 gap-1.5 sm:flex-none"
                 onClick={() => onReject(approval)}
               >
+                <X className="size-3.5 opacity-90" aria-hidden />
                 Reject
               </Button>
               <Button
                 type="button"
                 variant="default"
-                className="flex-1 sm:flex-none"
+                className="flex-1 gap-1.5 sm:flex-none"
                 onClick={() => onApprove(approval)}
               >
+                <Check className="size-3.5 opacity-90" aria-hidden />
                 Approve
               </Button>
             </SheetFooter>

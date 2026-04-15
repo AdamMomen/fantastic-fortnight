@@ -213,29 +213,28 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ### Phase gate — engineering
 
-- [ ] `pnpm install`
-- [ ] `pnpm exec tsc --noEmit`
-- [ ] `pnpm lint`
-- [ ] `pnpm build`
-- [ ] `pnpm test`
+- [x] `pnpm exec tsc --noEmit`
+- [x] `pnpm lint`
+- [x] `pnpm build`
+- [x] `pnpm test`
 
 ### Phase gate — user verification
 
-- [ ] Full loop: pick row → drawer → approve/reject feedback behaves as expected
+- [x] Full loop: pick row → drawer → approve/reject feedback behaves as expected
 
 ---
 
 ## Phase 6 — UI Polish
 
-- [ ] Improve spacing and typography
-- [ ] Add icons (lucide)
-- [ ] Add hover states
-- [ ] Add empty state
-- [ ] Ensure mobile responsiveness (basic)
+- [x] Improve spacing and typography
+- [x] Add icons (lucide)
+- [x] Add hover states
+- [x] Add empty state
+- [x] Ensure mobile responsiveness (basic)
 
 ### Unit tests (this phase)
 
-- [ ] Tests for empty state and any new formatting helpers; snapshot or RTL only where stable
+- [x] Tests for empty state and any new formatting helpers; snapshot or RTL only where stable
 
 ### Phase gate — engineering
 

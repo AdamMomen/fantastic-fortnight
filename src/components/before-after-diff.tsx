@@ -1,3 +1,5 @@
+import { Columns2 } from "lucide-react"
+
 type BeforeAfterDiffProps = {
   before: Record<string, string>
   after: Record<string, string>
@@ -12,7 +14,7 @@ function DiffColumn({
 }) {
   const keys = Object.keys(entries)
   return (
-    <div className="rounded-lg border border-border bg-card p-3">
+    <div className="rounded-lg border border-border bg-card p-3 shadow-sm transition-shadow hover:shadow-md">
       <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
         {title}
       </h4>
@@ -37,7 +39,8 @@ function DiffColumn({
 export function BeforeAfterDiff({ before, after }: BeforeAfterDiffProps) {
   return (
     <div>
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+      <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        <Columns2 className="size-3.5 shrink-0 opacity-80" aria-hidden />
         Before / after
       </h3>
       <div className="mt-2 grid gap-3 sm:grid-cols-2">

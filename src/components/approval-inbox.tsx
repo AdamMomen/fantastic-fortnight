@@ -1,7 +1,9 @@
 "use client"
 
+import { ApprovalMobileCardList } from "@/components/approval-mobile-card-list"
 import { ApprovalTable } from "@/components/approval-table"
 import { DetailDrawer } from "@/components/detail-drawer"
+import { EmptyApprovalsState } from "@/components/empty-approvals-state"
 import { useApprovalInboxState } from "@/hooks/use-approval-inbox-state"
 import type { Approval } from "@/lib/mock-data"
 
@@ -21,11 +23,26 @@ export function ApprovalInbox({ approvals }: ApprovalInboxProps) {
 
   return (
     <>
-      <ApprovalTable
-        approvals={approvals}
-        selectedId={selectedApproval?.id ?? null}
-        onRowActivate={openDrawer}
-      />
+      {approvals.length === 0 ? (
+        <EmptyApprovalsState />
+      ) : (
+        <>
+          <div className="hidden sm:block">
+            <ApprovalTable
+              approvals={approvals}
+              selectedId={selectedApproval?.id ?? null}
+              onRowActivate={openDrawer}
+            />
+          </div>
+          <div className="sm:hidden">
+            <ApprovalMobileCardList
+              approvals={approvals}
+              selectedId={selectedApproval?.id ?? null}
+              onActivate={openDrawer}
+            />
+          </div>
+        </>
+      )}
 
       <DetailDrawer
         approval={selectedApproval}
