@@ -196,20 +196,20 @@ This repo uses **pnpm** for installs and scripts (not Yarn); if tooling changes,
 
 ## Phase 5 — Interaction & State
 
-- [ ] Manage state:
-  - [ ] selected approval
-  - [ ] drawer open/close
+- [x] Manage state:
+  - [x] selected approval
+  - [x] drawer open/close
 
-- [ ] Implement actions:
-  - [ ] approve → console log
-  - [ ] reject → console log
+- [x] Implement actions:
+  - [x] approve → console log
+  - [x] reject → console log
 
-- [ ] Add feedback:
-  - [ ] optional toast or status message
+- [x] Add feedback:
+  - [x] optional toast or status message
 
 ### Unit tests (this phase)
 
-- [ ] Tests for state transitions (select, open, close) and action handlers (mocked)
+- [x] Tests for state transitions (select, open, close) and action handlers (mocked)
 
 ### Phase gate — engineering
 
